@@ -1,4 +1,4 @@
-// EPOS LM3S811 (ARM Cortex-M3) MCU Mediator Declarations
+// EPOS RealView PBX-A9 (ARM Cortex-A9) MCU Mediator Declarations
 
 #ifndef __realviewpbxa9_h
 #define __realviewpbxa9_h
@@ -48,15 +48,15 @@ public:
         SCR0_BASE                   = 0x10001000, // System Control 0
         SCR1_BASE                   = 0x1001a000, // System Control 1
 
-        I2C1_BASE                   = 0x, // I2C
-        I2C2_BASE                   = 0x, // I2C
-        I2C0_BASE                   = 0x, // I2C
+        // I2C1_BASE                   = 0x, // I2C
+        // I2C2_BASE                   = 0x, // I2C
+        // I2C0_BASE                   = 0x, // I2C
 
-        ADC0_BASE                   = 0x, // ADC
-        FLASH0_BASE                 = 0x, // Flash Controller
-        IC0_BASE                    = 0x0, // NVIC
+        // ADC0_BASE                   = 0x, // ADC
+        // FLASH0_BASE                 = 0x, // Flash Controller
+        // IC0_BASE                    = 0x0, // NVIC
     
-        IC1_BASE                    = 0x, // NVIC
+        // IC1_BASE                    = 0x, // NVIC
     };
 
     // System Control Registers offsets to SCR_BASE
