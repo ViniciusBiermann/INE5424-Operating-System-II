@@ -50,15 +50,13 @@ public:
 
         // following not checked
 
-        I2C0_BASE                   = 0x40002000, // I2C
-        I2C1_BASE                   = 0x40020000, // I2C
-        I2C2_BASE                   = 0x40021000, // I2C
+        FLASH0_BASE                 = 0x18000300, // Flash Controller
 
-        ADC0_BASE                   = 0x40038000, // ADC
-        FLASH0_BASE                 = 0x400fd000, // Flash Controller
-        IC0_BASE                    = 0xe000e000, // NVIC
-    
-        IC1_BASE                    = 0xe000e0f0, // NVIC
+        GIC1_BASE                   = 0x10040000, // GIC 1 nIRQ
+        GIC2_BASE                   = 0x10050000, // GIC 2 nFIQ
+        GIC3_BASE                   = 0x10060000, // GIC 3 nIRQ
+        GIC4_BASE                   = 0x10070000, // GIC 4 nFIQ
+
     };
 
     // System Control Registers offsets to SCR_BASE
@@ -494,7 +492,7 @@ protected:
 
 public:
     static volatile Reg32 & scr(unsigned int o) { return reinterpret_cast<volatile Reg32 *>(SCR0_BASE)[o / sizeof(Reg32)]; }
-    static volatile Reg32 & scs(unsigned int o) { return reinterpret_cast<volatile Reg32 *>(IC0_BASE)[o / sizeof(Reg32)]; }
+    static volatile Reg32 & scs(unsigned int o) { return reinterpret_cast<volatile Reg32 *>(GIC1_BASE)[o / sizeof(Reg32)]; }
 
     // static volatile Reg32 & systick(unsigned int o) { return reinterpret_cast<volatile Reg32 *>(TIMER4_BASE)[o / sizeof(Reg32)]; }
     static volatile Reg32 & tsc(unsigned int o)     { return reinterpret_cast<volatile Reg32 *>(TIMER1_BASE)[o / sizeof(Reg32)]; }
