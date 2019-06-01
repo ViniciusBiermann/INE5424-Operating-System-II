@@ -48,15 +48,17 @@ public:
         SCR0_BASE                   = 0x10001000, // System Control 0
         SCR1_BASE                   = 0x1001a000, // System Control 1
 
-        // I2C1_BASE                   = 0x, // I2C
-        // I2C2_BASE                   = 0x, // I2C
-        // I2C0_BASE                   = 0x, // I2C
+        // following not checked
 
-        // ADC0_BASE                   = 0x, // ADC
-        // FLASH0_BASE                 = 0x, // Flash Controller
-        // IC0_BASE                    = 0x0, // NVIC
+        I2C0_BASE                   = 0x40002000, // I2C
+        I2C1_BASE                   = 0x40020000, // I2C
+        I2C2_BASE                   = 0x40021000, // I2C
+
+        ADC0_BASE                   = 0x40038000, // ADC
+        FLASH0_BASE                 = 0x400fd000, // Flash Controller
+        IC0_BASE                    = 0xe000e000, // NVIC
     
-        // IC1_BASE                    = 0x, // NVIC
+        IC1_BASE                    = 0xe000e0f0, // NVIC
     };
 
     // System Control Registers offsets to SCR_BASE
@@ -117,11 +119,11 @@ public:
 
     // Useful Bits in the Run Mode Clock Gating Control Register 2
     enum RCGC2 {                        // Description                                          Type    Value after reset
-        RCGC2_GPIOA     = 1 <<  0,      // GPIOA                                                rw      0
-        RCGC2_GPIOB     = 1 <<  1,      // GPIOB                                                rw      0
-        RCGC2_GPIOC     = 1 <<  2,      // GPIOC                                                rw      0
-        RCGC2_GPIOD     = 1 <<  3,      // GPIOD                                                rw      0
-        RCGC2_GPIOE     = 1 <<  4       // GPIOE                                                rw      0
+        RCGC2_GPIO0     = 1 <<  0,      // GPIOA                                                rw      0
+        RCGC2_GPIO1     = 1 <<  1,      // GPIOB                                                rw      0
+        RCGC2_GPIO2     = 1 <<  2,      // GPIOC                                                rw      0
+        // RCGC2_GPIOD     = 1 <<  3,      // GPIOD                                                rw      0
+        // RCGC2_GPIOE     = 1 <<  4       // GPIOE                                                rw      0
     };
 
     // Useful Bits in the Run-Mode Clock Configuration
@@ -374,7 +376,7 @@ public:
     };
 
 protected:
-    LM3S811() {}
+    REALVIEWPBXA9() {}
 
     static void reboot() {
         Reg32 val = scs(AIRCR) & (~((-1u / VECTKEY) * VECTKEY));
@@ -491,19 +493,19 @@ protected:
     static void power_ieee802_15_4(const Power_Mode & mode);
 
 public:
-    static volatile Reg32 & scr(unsigned int o) { return reinterpret_cast<volatile Reg32 *>(SCR_BASE)[o / sizeof(Reg32)]; }
+    static volatile Reg32 & scr(unsigned int o) { return reinterpret_cast<volatile Reg32 *>(SCR0_BASE)[o / sizeof(Reg32)]; }
     static volatile Reg32 & scs(unsigned int o) { return reinterpret_cast<volatile Reg32 *>(IC0_BASE)[o / sizeof(Reg32)]; }
 
-    static volatile Reg32 & systick(unsigned int o) { return reinterpret_cast<volatile Reg32 *>(TIMER4_BASE)[o / sizeof(Reg32)]; }
+    // static volatile Reg32 & systick(unsigned int o) { return reinterpret_cast<volatile Reg32 *>(TIMER4_BASE)[o / sizeof(Reg32)]; }
     static volatile Reg32 & tsc(unsigned int o)     { return reinterpret_cast<volatile Reg32 *>(TIMER1_BASE)[o / sizeof(Reg32)]; }
     static volatile Reg32 & timer0(unsigned int o)  { return reinterpret_cast<volatile Reg32 *>(TIMER0_BASE)[o / sizeof(Reg32)]; }
     static volatile Reg32 & timer1(unsigned int o)  { return reinterpret_cast<volatile Reg32 *>(TIMER2_BASE)[o / sizeof(Reg32)]; }
-    static volatile Reg32 & gpioa(unsigned int o)   { return reinterpret_cast<volatile Reg32 *>(GPIOA_BASE)[o / sizeof(Reg32)]; }
-    static volatile Reg32 & gpiob(unsigned int o)   { return reinterpret_cast<volatile Reg32 *>(GPIOB_BASE)[o / sizeof(Reg32)]; }
-    static volatile Reg32 & gpioc(unsigned int o)   { return reinterpret_cast<volatile Reg32 *>(GPIOC_BASE)[o / sizeof(Reg32)]; }
-    static volatile Reg32 & gpiod(unsigned int o)   { return reinterpret_cast<volatile Reg32 *>(GPIOD_BASE)[o / sizeof(Reg32)]; }
-    static volatile Reg32 & gpioe(unsigned int o)   { return reinterpret_cast<volatile Reg32 *>(GPIOE_BASE)[o / sizeof(Reg32)]; }
-    static volatile Reg32 & gpio(unsigned int port, unsigned int o) { return reinterpret_cast<volatile Reg32 *>(GPIOA_BASE + 0x1000*(port))[o / sizeof(Reg32)]; }
+    static volatile Reg32 & gpioa(unsigned int o)   { return reinterpret_cast<volatile Reg32 *>(GPIO0_BASE)[o / sizeof(Reg32)]; }
+    static volatile Reg32 & gpiob(unsigned int o)   { return reinterpret_cast<volatile Reg32 *>(GPIO1_BASE)[o / sizeof(Reg32)]; }
+    static volatile Reg32 & gpioc(unsigned int o)   { return reinterpret_cast<volatile Reg32 *>(GPIO2_BASE)[o / sizeof(Reg32)]; }
+    // static volatile Reg32 & gpiod(unsigned int o)   { return reinterpret_cast<volatile Reg32 *>(GPIOD_BASE)[o / sizeof(Reg32)]; }
+    // static volatile Reg32 & gpioe(unsigned int o)   { return reinterpret_cast<volatile Reg32 *>(GPIOE_BASE)[o / sizeof(Reg32)]; }
+    static volatile Reg32 & gpio(unsigned int port, unsigned int o) { return reinterpret_cast<volatile Reg32 *>(GPIO0_BASE + 0x1000*(port))[o / sizeof(Reg32)]; }
 
 protected:
     static void pre_init();
