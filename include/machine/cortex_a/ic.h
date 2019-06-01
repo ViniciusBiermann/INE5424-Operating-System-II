@@ -45,9 +45,13 @@ public:
         IRQ_SSI1        = 34,
         IRQ_GPT3A       = 35,
         IRQ_GPT3B       = 36,
+        TIMER01         = 37,
+        TIMER23         = 38,
         IRQ_USB         = 44, // Using alternate interrupt mapping
         IRQ_UDMASW      = 46,
         IRQ_UDMAERR     = 47,
+        TIMER45         = 73,
+        TIMER67         = 74,
         IRQ_LAST        = IRQ_UDMAERR
     };
 
@@ -57,8 +61,8 @@ public:
     static const unsigned int HARD_INT = 16;
     static const unsigned int SOFT_INT = HARD_INT + IRQS;
     enum {
-        INT_HARD_FAULT  = ARMv7_M::EXC_HARD,
-        INT_TIMER       = ARMv7_M::EXC_SYSTICK,
+        INT_HARD_FAULT  = ARMv7_A::EXC_UNDEFINED_INSTRUCTION,
+        INT_TIMER       = ARMv7_A::EXC_IRQ,
         INT_FIRST_HARD  = HARD_INT,
         INT_USER_TIMER0 = HARD_INT + IRQ_GPT0A,
         INT_USER_TIMER1 = HARD_INT + IRQ_GPT1A,

@@ -18,18 +18,18 @@ template<> struct Traits<Machine>: public Traits<Machine_Common>
     static const unsigned int CPUS = Traits<Build>::CPUS;
 
     // Physical Memory
-    static const unsigned int MEM_BASE    = 0x20000000;
-    static const unsigned int MEM_TOP     = 0x20001fff; // 8 KB (MAX for 32-bit is 0x70000000 / 1792 MB)
-    static const unsigned int BOOT_STACK  = 0x20001ffc; // MEM_TOP - sizeof(int)
+    static const unsigned int MEM_BASE    = 0x48000000;
+    static const unsigned int MEM_TOP     = 0x481ffffe; // 8 KB (MAX for 32-bit is 0x70000000 / 1792 MB)
+    static const unsigned int BOOT_STACK  = 0x481ffffb; // MEM_TOP - sizeof(int)
 
     // Logical Memory Map
-    static const unsigned int APP_LOW     = 0x20000000;
+    static const unsigned int APP_LOW     = 0x48000000;
     static const unsigned int APP_CODE    = 0x00000000;
-    static const unsigned int APP_DATA    = 0x20000000;
-    static const unsigned int APP_HIGH    = 0x20001fff; // 8 KB
+    static const unsigned int APP_DATA    = 0x48000000;
+    static const unsigned int APP_HIGH    = 0x481ffffe; // 8 KB
 
-    static const unsigned int PHY_MEM     = 0x20000000;
-    static const unsigned int IO_BASE     = 0x40000000;
+    static const unsigned int PHY_MEM     = 0x48000000;
+    static const unsigned int IO_BASE     = 0x1f000000;
     static const unsigned int IO_TOP      = 0x440067ff;
 
     static const unsigned int SYS         = 0x00200000;
