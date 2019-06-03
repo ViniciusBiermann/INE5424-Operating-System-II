@@ -9,14 +9,6 @@ void _vector_table()
 {
     ASM("\t\n\
         b   _reset                                                           \t\n\
-        b   _undefined_instruction                                           \t\n\
-        b   _software_interrupt                                              \t\n\
-        b   _prefetch_abort                                                  \t\n\
-        b   _data_abort                                                      \t\n\
-        nop                           // Reserved                            \t\n\
-        b   _irq                                                             \t\n\
-        b   _fiq                                                             \t\n\
-
         _reset:                                                              \t\n\
             MRC p15, 0, r1, c1, c0, 0                                        \t\n\
             BIC r1, r1, #0x1                                                 \t\n\
@@ -50,7 +42,7 @@ void _vector_table()
             MCR p15, 0, r1, c8, c7, 0                                        \t\n\
                                                                              \t\n\
             LDR r0, =0xDE2                                                   \t\n\
-            LDR r1, =0x00004000 \t\n\
+            LDR r1, =0x00004000                                              \t\n\
             LDR r3, = 4095                                                   \t\n\
             write_pte:                                                       \t\n\
             ORR r2, r0, r3, LSL #20                                          \t\n\

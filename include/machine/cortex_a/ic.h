@@ -56,7 +56,7 @@ public:
     };
 
     // Interrupts
-    static const unsigned int INTS = 64;
+    static const unsigned int INTS = 93;
     static const unsigned int EXC_INT = 0;
     static const unsigned int HARD_INT = 16;
     static const unsigned int SOFT_INT = HARD_INT + IRQS;
@@ -147,7 +147,7 @@ private:
     }
 };
 
-class IC: private Engine
+class IC: private GIC
 {
     friend class Machine;
 
