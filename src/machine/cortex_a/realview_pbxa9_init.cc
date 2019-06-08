@@ -2,7 +2,7 @@
 
 #include <machine/main.h>
 
-#ifdef __mmod_realview_pbxa9__
+#ifdef __mmod_realview_pbx__
 
 void _startup_cache();
 

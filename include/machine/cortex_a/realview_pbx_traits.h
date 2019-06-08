@@ -19,8 +19,8 @@ template<> struct Traits<Machine>: public Traits<Machine_Common>
 
     // Physical Memory
     static const unsigned int MEM_BASE    = 0x00000000;
-    static const unsigned int MEM_TOP     = 0x7fffffff; // 8 KB (MAX for 32-bit is 0x70000000 / 1792 MB)
-    static const unsigned int BOOT_STACK  = 0x7ffffffc; // MEM_TOP - sizeof(int)
+    static const unsigned int MEM_TOP     = 0xffffffff; // 8 KB (MAX for 32-bit is 0x70000000 / 1792 MB)
+    static const unsigned int BOOT_STACK  = 0xfffffffc; // MEM_TOP - sizeof(int)
 
     // Logical Memory Map
     static const unsigned int APP_LOW     = 0x00000000;
@@ -38,7 +38,7 @@ template<> struct Traits<Machine>: public Traits<Machine_Common>
 
     // Default Sizes and Quantities
     static const unsigned int STACK_SIZE  = 512;
-    static const unsigned int HEAP_SIZE   = 512;
+    static const unsigned int HEAP_SIZE   = 2048;
     static const unsigned int MAX_THREADS = 5;
 };
 

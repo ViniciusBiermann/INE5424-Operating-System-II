@@ -15,7 +15,7 @@ void _vector_table()
             b   _prefetch_abort                                              \t\n\
             b   _data_abort                                                  \t\n\
             nop                           // Reserved                        \t\n\
-            b   _irq                                                         \t\n\
+            b   _int_entry                                                   \t\n\
             b   _fiq                                                         \t\n\
         _reset:                                                              \t\n\
             MRC p15, 0, r1, c1, c0, 0                                        \t\n\
@@ -112,7 +112,7 @@ void _vector_table()
                                                                              \t\n\
             MOV r1,#0x0                                                      \t\n\
             MCR p15, 0, r1, c2, c0, 2                                        \t\n\
-            LDR r1, =ttb_address                                             \t\n\
+            LDR r1, =0xFA0000                                                \t\n\
             MCR p15, 0, r1, c2, c0, 0                                        \t\n\
                                                                              \t\n\
             LDR r1, =0x55555555                                              \t\n\
@@ -121,7 +121,7 @@ void _vector_table()
             MRC p15, 0, r1, c1, c0, 0                                        \t\n\
             ORR r1, r1, #0x1                                                 \t\n\
             MCR p15, 0, r1, c1, c0, 0                                        \t\n\
-
-            b _start
+                                                                             \t\n\
+            b _start                                                         \t\n\
         ");
 }

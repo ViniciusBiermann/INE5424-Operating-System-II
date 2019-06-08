@@ -194,58 +194,58 @@ protected:
 
     // Device enabling
     static void enable_uart(unsigned int unit) {
-        assert(unit < UARTS);
-        power_uart(unit, FULL);
-        gpioa(AFSEL) |= 3 << (unit * 2);                // Pins A[1:0] are multiplexed between GPIO and UART 0. Select UART.
-        gpioa(DEN) |= 3 << (unit * 2);                  // Enable digital I/O on Pins A[1:0]
+        // assert(unit < UARTS);
+        // power_uart(unit, FULL);
+        // gpioa(AFSEL) |= 3 << (unit * 2);                // Pins A[1:0] are multiplexed between GPIO and UART 0. Select UART.
+        // gpioa(DEN) |= 3 << (unit * 2);                  // Enable digital I/O on Pins A[1:0]
     }
     static void enable_usb(unsigned int unit) {}
 
     // Power Management
     static void power_uart(unsigned int unit, const Power_Mode & mode) {
-        assert(unit < UARTS);
-        switch(mode) {
-        case ENROLL:
-        	break;
-        case DISMISS:
-        	break;
-        case SAME:
-        	break;
-        case FULL:
-        	break;
-        case LIGHT:
-        	break;
-        case SLEEP:
-            scr(RCGC1) |= 1 << unit;                   // Activate UART "unit" clock
-            scr(RCGC2) |= 1 << unit;                   // Activate port "unit" clock
-            break;
-        case OFF:
-            scr(RCGC1) &= ~(1 << unit);                // Deactivate UART "unit" clock
-            scr(RCGC2) &= ~(1 << unit);                // Deactivate port "unit" clock
-            break;
-        }
+        // assert(unit < UARTS);
+        // switch(mode) {
+        // case ENROLL:
+        // 	break;
+        // case DISMISS:
+        // 	break;
+        // case SAME:
+        // 	break;
+        // case FULL:
+        // 	break;
+        // case LIGHT:
+        // 	break;
+        // case SLEEP:
+        //     scr(RCGC1) |= 1 << unit;                   // Activate UART "unit" clock
+        //     scr(RCGC2) |= 1 << unit;                   // Activate port "unit" clock
+        //     break;
+        // case OFF:
+        //     scr(RCGC1) &= ~(1 << unit);                // Deactivate UART "unit" clock
+        //     scr(RCGC2) &= ~(1 << unit);                // Deactivate port "unit" clock
+        //     break;
+        // }
     }
 
     static void power_user_timer(unsigned int unit, const Power_Mode & mode) {
-        assert(unit < TIMERS);
-        switch(mode) {
-        case ENROLL:
-        	break;
-        case DISMISS:
-        	break;
-        case SAME:
-        	break;
-        case FULL:
-        	break;
-        case LIGHT:
-        	break;
-        case SLEEP:
-            scr(RCGC1) |= 1 << (unit + 16);             // Activate GPTM "unit" clock
-            break;
-        case OFF:
-            scr(RCGC1) &= ~(1 << (unit + 16));          // Deactivate GPTM "unit" clock
-            break;
-        }
+        // assert(unit < TIMERS);
+        // switch(mode) {
+        // case ENROLL:
+        // 	break;
+        // case DISMISS:
+        // 	break;
+        // case SAME:
+        // 	break;
+        // case FULL:
+        // 	break;
+        // case LIGHT:
+        // 	break;
+        // case SLEEP:
+        //     scr(RCGC1) |= 1 << (unit + 16);             // Activate GPTM "unit" clock
+        //     break;
+        // case OFF:
+        //     scr(RCGC1) &= ~(1 << (unit + 16));          // Deactivate GPTM "unit" clock
+        //     break;
+        // }
     }
 
     static void power_usb(unsigned int unit, const Power_Mode & mode) {}
@@ -254,38 +254,38 @@ protected:
     // GPIO
     static void gpio_init() {}
     static void power_gpio(unsigned int unit, const Power_Mode & mode) {
-        assert(unit < UARTS);
-        switch(mode) {
-        case ENROLL:
-        	break;
-        case DISMISS:
-        	break;
-        case SAME:
-        	break;
-        case FULL:
-        	break;
-        case LIGHT:
-        	break;
-        case SLEEP:
-            scr(RCGC2) |= 1 << unit;                   // Activate port "unit" clock
-            break;
-        case OFF:
-            scr(RCGC2) &= ~(1 << unit);                // Deactivate port "unit" clock
-            break;
-        }
+        // assert(unit < UARTS);
+        // switch(mode) {
+        // case ENROLL:
+        // 	break;
+        // case DISMISS:
+        // 	break;
+        // case SAME:
+        // 	break;
+        // case FULL:
+        // 	break;
+        // case LIGHT:
+        // 	break;
+        // case SLEEP:
+        //     scr(RCGC2) |= 1 << unit;                   // Activate port "unit" clock
+        //     break;
+        // case OFF:
+        //     scr(RCGC2) &= ~(1 << unit);                // Deactivate port "unit" clock
+        //     break;
+        // }
     }
-    void gpio_pull_up(unsigned int port, unsigned int pin) { gpio(port, PUR) &= 1 << pin; }
-    void gpio_pull_down(unsigned int port, unsigned int pin) { gpio(port, PDR) &= 1 << pin; }
-    void gpio_floating(unsigned int port, unsigned int pin) { gpio(port, ODR) &= 1 << pin; }
+    // void gpio_pull_up(unsigned int port, unsigned int pin) { gpio(port, PUR) &= 1 << pin; }
+    // void gpio_pull_down(unsigned int port, unsigned int pin) { gpio(port, PDR) &= 1 << pin; }
+    // void gpio_floating(unsigned int port, unsigned int pin) { gpio(port, ODR) &= 1 << pin; }
 
-    // ADC (not implemented for this model)
-    static void adc_config(unsigned char channel);
+    // // ADC (not implemented for this model)
+    // static void adc_config(unsigned char channel);
 
-    // PWM (not implemented for this model)
-    static void pwm_config(unsigned int timer, char gpio_port, unsigned int gpio_pin);
+    // // PWM (not implemented for this model)
+    // static void pwm_config(unsigned int timer, char gpio_port, unsigned int gpio_pin);
 
-    // IEEE 802.15.4 (not present in this model)
-    static void power_ieee802_15_4(const Power_Mode & mode);
+    // // IEEE 802.15.4 (not present in this model)
+    // static void power_ieee802_15_4(const Power_Mode & mode);
 
 public:
     static volatile Reg32 & int_dist(unsigned int o) { return reinterpret_cast<volatile Reg32 *>(PERIPHERAL_BASE + INT_DIST)[o / sizeof(Reg32)]; }
