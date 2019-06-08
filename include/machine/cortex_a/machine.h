@@ -30,7 +30,7 @@ public:
         return 1;
     }
     static unsigned int cpu_id(){
-        return 0;
+        return Machine_Model::cpu_id();
     }
 
     static void smp_barrier();

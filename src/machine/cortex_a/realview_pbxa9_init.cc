@@ -2,7 +2,9 @@
 
 #include <machine/main.h>
 
-#ifdef __mmod_lm3s811__
+#ifdef __mmod_realview_pbxa9__
+
+void _startup_cache();
 
 __BEGIN_SYS
 
@@ -52,9 +54,9 @@ void REALVIEWPBXA9::pre_init()
 
 void REALVIEWPBXA9::init()
 {
-    db<Init, Machine>(TRC) << "REALVIEWPBXA9::init:CCR = " << scs(CCR) << endl;
-    scs(CCR) |= BASETHR; // QEMU bug: on REALVIEWPBXA9 this register is not updated, but it doesn't seem to cause any errors
-    db<Init, Machine>(TRC) << "REALVIEWPBXA9::init:CCR = " << scs(CCR) << endl;
+    // db<Init, Machine>(TRC) << "REALVIEWPBXA9::init:CCR = " << scs(CCR) << endl;
+    // scs(CCR) |= BASETHR; // QEMU bug: on REALVIEWPBXA9 this register is not updated, but it doesn't seem to cause any errors
+    // db<Init, Machine>(TRC) << "REALVIEWPBXA9::init:CCR = " << scs(CCR) << endl;
 }
 
 __END_SYS
