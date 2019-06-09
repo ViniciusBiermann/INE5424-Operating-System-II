@@ -7,6 +7,8 @@ extern "C" void * _edata;
 extern "C" void * __bss_start;
 extern "C" void * _end;
 
+void _startup_mmu();
+
 __BEGIN_SYS
 
 void MMU::init()

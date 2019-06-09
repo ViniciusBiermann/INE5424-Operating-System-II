@@ -26,9 +26,8 @@ public:
     static void reboot();
     static void poweroff();
 
-    static unsigned int n_cpus(){
-        return 1;
-    }
+    static unsigned int n_cpus();
+
     static unsigned int cpu_id(){
         return Machine_Model::cpu_id();
     }
