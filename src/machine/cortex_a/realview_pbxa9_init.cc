@@ -10,6 +10,7 @@ __BEGIN_SYS
 
 void REALVIEWPBXA9::pre_init()
 {
+    ASM("MCR p15, 0, %0, c12, c0, 0"::"p"(Traits<Machine>::VECTOR_TBL));
 /*    // Initialize the clock
     CPU::Reg32 rcc = scr(RCC);
 

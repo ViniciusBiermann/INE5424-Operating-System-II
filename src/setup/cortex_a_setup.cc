@@ -96,10 +96,10 @@ void _vector_table()
                                                                                                           \t\n\
             MCR p15, 0, r1, c8, c7, 0                                                                     \t\n\
                                                                                                           \t\n\
-            LDR r0, =0xDE2                                                                                \t\n\
-            LDR r1, =0xFA0000                                                                             \t\n\
+            LDR r0, =0x10c0a                                                                                \t\n\
+            LDR r1, =0x07f00000                                                                             \t\n\
             LDR r3, = 4095                                                                                \t\n\
-              write_pte:                                                                                  \t\n\
+        write_pte:                                                                                        \t\n\
             ORR r2, r0, r3, LSL #20                                                                       \t\n\
             STR r2, [r1, r3, LSL #2]                                                                      \t\n\
             SUB r3, r3, #1                                                                                \t\n\
@@ -115,7 +115,7 @@ void _vector_table()
                                                                                                           \t\n\
             MOV r1,#0x0                                                                                   \t\n\
             MCR p15, 0, r1, c2, c0, 2                                                                     \t\n\
-            LDR r1, =0xFA0000                                                                             \t\n\
+            LDR r1, =0x07f00000                                                                             \t\n\
             MCR p15, 0, r1, c2, c0, 0                                                                     \t\n\
                                                                                                           \t\n\
             LDR r1, =0x55555555                                                                           \t\n\
