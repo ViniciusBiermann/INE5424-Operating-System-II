@@ -206,15 +206,15 @@ protected:
         // assert(unit < UARTS);
         // switch(mode) {
         // case ENROLL:
-        // 	break;
+        //  break;
         // case DISMISS:
-        // 	break;
+        //  break;
         // case SAME:
-        // 	break;
+        //  break;
         // case FULL:
-        // 	break;
+        //  break;
         // case LIGHT:
-        // 	break;
+        //  break;
         // case SLEEP:
         //     scr(RCGC1) |= 1 << unit;                   // Activate UART "unit" clock
         //     scr(RCGC2) |= 1 << unit;                   // Activate port "unit" clock
@@ -230,15 +230,15 @@ protected:
         // assert(unit < TIMERS);
         // switch(mode) {
         // case ENROLL:
-        // 	break;
+        //  break;
         // case DISMISS:
-        // 	break;
+        //  break;
         // case SAME:
-        // 	break;
+        //  break;
         // case FULL:
-        // 	break;
+        //  break;
         // case LIGHT:
-        // 	break;
+        //  break;
         // case SLEEP:
         //     scr(RCGC1) |= 1 << (unit + 16);             // Activate GPTM "unit" clock
         //     break;
@@ -257,15 +257,15 @@ protected:
         // assert(unit < UARTS);
         // switch(mode) {
         // case ENROLL:
-        // 	break;
+        //  break;
         // case DISMISS:
-        // 	break;
+        //  break;
         // case SAME:
-        // 	break;
+        //  break;
         // case FULL:
-        // 	break;
+        //  break;
         // case LIGHT:
-        // 	break;
+        //  break;
         // case SLEEP:
         //     scr(RCGC2) |= 1 << unit;                   // Activate port "unit" clock
         //     break;
@@ -291,7 +291,7 @@ public:
     static volatile Reg32 & int_dist(unsigned int o) { return reinterpret_cast<volatile Reg32 *>(PERIPHERAL_BASE + INT_DIST)[o / sizeof(Reg32)]; }
     static volatile Reg32 & gic(unsigned int o) { return reinterpret_cast<volatile Reg32 *>(PERIPHERAL_BASE + GIC)[o / sizeof(Reg32)]; }
     static volatile Reg32 & global_timer(unsigned int o) { return reinterpret_cast<volatile Reg32 *>(PERIPHERAL_BASE + GLOBAL_TIMER)[o / sizeof(Reg32)]; }
-    static volatile Reg32 & priv_timer(unsigned int o) { return reinterpret_cast<volatile Reg32 *>(PERIPHERAL_BASE + TIMER0_BASE)[o / sizeof(Reg32)]; }
+    static volatile Reg32 & priv_timer(unsigned int o) { return reinterpret_cast<volatile Reg32 *>(PERIPHERAL_BASE + PRIVATE_TIMERS)[o / sizeof(Reg32)]; }
 
 protected:
     static void pre_init();

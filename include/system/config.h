@@ -7,7 +7,7 @@
 // ARCHITECTURE, MACHINE, AND APPLICATION SELECTION
 // This section is generated automatically from makedefs by $EPOS/etc/makefile
 //============================================================================
-#define MODE xxx
+#define SMOD xxx
 #define ARCH xxx
 #define MACH xxx
 #define MMOD xxx
@@ -103,6 +103,9 @@ namespace EPOS {
 #define __AES_H                 __HEADER_MACH(aes)
 #define __ipv4__
 #define __tstp__
+
+#define __KEYPAD_H              __HEADER_TRAN(keypad)
+
 #endif
 
 #ifdef __mmod_lm3s811__
@@ -152,8 +155,8 @@ namespace EPOS {
 #define __PMU_H                 __HEADER_ARCH(pmu)
 
 #define __UART_H                __HEADER_MACH(uart)
-// #define __NIC_H                 __HEADER_MACH(nic)
-// #define __AES_H                 __HEADER_MACH(aes)
+#define __NIC_H                 __HEADER_MACH(nic)
+#define __AES_H                 __HEADER_MACH(aes)
 #define __ipv4__
 #endif
 

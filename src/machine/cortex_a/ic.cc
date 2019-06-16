@@ -102,10 +102,18 @@ void IC::fiq()
     Machine::panic();
 }
 
-void IC::dispatch(unsigned int id)
+void IC::dispatch(unsigned int i)
 {
+    Interrupt_Id id = int_id();
+
     if((id != INT_TIMER) || Traits<IC>::hysterically_debugged)
         db<IC>(TRC) << "IC::dispatch(i=" << id << ")" << endl;
+
+    assert(id < INTS);
+    if(_eoi_vector[id])
+        _eoi_vector[id](id);
+
+    CPU::int_enable();
 
     _int_vector[id](id);
 }

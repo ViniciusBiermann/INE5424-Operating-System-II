@@ -1,7 +1,7 @@
-// EPOS PC AES Mediator Declarations
+// EPOS ARM Cortex-M AES Mediator Declarations
 
-#ifndef __pc_aes_h
-#define __pc_aes_h
+#ifndef __cortex_a_aes_h
+#define __cortex_a_aes_h
 
 #include <machine/aes.h>
 

@@ -125,6 +125,6 @@ void _vector_table()
             ORR r1, r1, #0x1                                                                              \t\n\
             MCR p15, 0, r1, c1, c0, 0                                                                     \t\n\
                                                                                                           \t\n\
-            b _start                                                                                      \t\n\
+            b _mcu_start                                                                                      \t\n\
         ");
 }
