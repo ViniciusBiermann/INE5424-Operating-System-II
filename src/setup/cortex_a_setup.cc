@@ -96,8 +96,8 @@ void _vector_table()
                                                                                                           \t\n\
             MCR p15, 0, r1, c8, c7, 0                                                                     \t\n\
                                                                                                           \t\n\
-            LDR r0, =0x10c0a                                                                                \t\n\
-            LDR r1, =0x07f00000                                                                             \t\n\
+            LDR r0, =0x10c0a                                                                              \t\n\
+            LDR r1, =0x07f00000                                                                           \t\n\
             LDR r3, = 4095                                                                                \t\n\
         write_pte:                                                                                        \t\n\
             ORR r2, r0, r3, LSL #20                                                                       \t\n\
@@ -115,7 +115,7 @@ void _vector_table()
                                                                                                           \t\n\
             MOV r1,#0x0                                                                                   \t\n\
             MCR p15, 0, r1, c2, c0, 2                                                                     \t\n\
-            LDR r1, =0x07f00000                                                                             \t\n\
+            LDR r1, =0x07f00000                                                                           \t\n\
             MCR p15, 0, r1, c2, c0, 0                                                                     \t\n\
                                                                                                           \t\n\
             LDR r1, =0x55555555                                                                           \t\n\
@@ -125,6 +125,11 @@ void _vector_table()
             ORR r1, r1, #0x1                                                                              \t\n\
             MCR p15, 0, r1, c1, c0, 0                                                                     \t\n\
                                                                                                           \t\n\
-            b _mcu_start                                                                                      \t\n\
+            //Branch prediction                                                                           \t\n\
+            MRC     p15, 0, r0, c1, c0, 0     // Read SCTLR                                               \t\n\
+            ORR     r0, r0, #(1 << 11)        // Set the Z bit (bit 11)                                   \t\n\
+            MCR     p15, 0,r0, c1, c0, 0      // Write SCTLR                                              \t\n\
+                                                                                                          \t\n\
+            b _mcu_start                                                                                  \t\n\
         ");
 }
