@@ -18,8 +18,15 @@ void _vector_table()
             b   _int_entry                                                                                \t\n\
             b   _fiq                                                                                      \t\n\
         _reset:                                                                                           \t\n\
+            MRC p15, 0, r2, c0, c0, 5                                                                     \t\n\
+            ANDS r2, r2, #0x03                                                                            \t\n\
+            MOV r2, r2, LSL #14                                                                           \t\n\
+            LDR r1, =__boot_stack__                                                                       \t\n\
+            SUB r1, r1, r2                                                                                \t\n\
+            MOV sp, r1                                                                                    \t\n\
+                                                                                                          \t\n\
             MRC p15, 0, r1, c1, c0, 0                                                                     \t\n\
-            BIC r1, r1, #0x1                                                                              \t\n\
+            BIC r1, r1, #1                                                                                \t\n\
             BIC r1, r1, #(1 << 12)      // i-cache off                                                    \t\n\
             BIC r1, r1, #(1 << 2)       // d-cache & L2-$ off                                             \t\n\
             MCR p15, 0, r1, c1, c0, 0                                                                     \t\n\
@@ -76,6 +83,18 @@ void _vector_table()
             ADD R4, #0                                                                                    \t\n\
             ADD R4, R4, #10                                                                               \t\n\
                                                                                                           \t\n\
+            MRC p15, 0, r1, c1, c0, 0                                                                     \t\n\
+            BIC r1, r1, #0x1                                                                              \t\n\
+            MCR p15, 0, r1, c1, c0, 0                                                                     \t\n\
+                                                                                                          \t\n\
+            // Disable L1 Caches                                                                          \t\n\
+            MRC p15, 0, r1, c1, c0, 0                                                                     \t\n\
+            BIC r1, r1, #(0x1 << 12)                                                                      \t\n\
+            BIC r1, r1, #(0x1 << 2)                                                                       \t\n\
+            MCR p15, 0, r1, c1, c0, 0                                                                     \t\n\
+                                                                                                          \t\n\
+            MOV r1, #0                                                                                    \t\n\
+            MCR p15, 0, r1, c7, c5, 0                                                                     \t\n\
                                                                                                           \t\n\
             MRC p15, 1, r0, c0, c0, 0                                                                     \t\n\
             LDR r3, =#0x1ff                                                                               \t\n\
@@ -130,6 +149,6 @@ void _vector_table()
             ORR     r0, r0, #(1 << 11)        // Set the Z bit (bit 11)                                   \t\n\
             MCR     p15, 0,r0, c1, c0, 0      // Write SCTLR                                              \t\n\
                                                                                                           \t\n\
-            b _mcu_start                                                                                  \t\n\
+            b _start                                                                                      \t\n\
         ");
 }
