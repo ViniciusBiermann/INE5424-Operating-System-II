@@ -78,6 +78,34 @@ namespace Scheduling_Criteria
         FCFS(Tn & ... an) {}
     };
 
+    // HRRN
+    class HRRN: public Priority {
+
+        typedef RTC::Microsecond Microsecond;
+
+    public:
+        enum {
+            MAIN   = 0,
+            HIGH   = (unsigned(1) << (sizeof(int) * 8 - 1)) - 3,
+            NORMAL = (unsigned(1) << (sizeof(int) * 8 - 1)) - 3,
+            LOW    = (unsigned(1) << (sizeof(int) * 8 - 1)) - 2,
+            IDLE   = (unsigned(1) << (sizeof(int) * 8 - 1)) - 1
+        };
+
+    public:
+        static const bool timed = false;
+        static const bool dynamic = true;
+        static const bool preemptive = false;
+
+    public:
+        HRRN(int p = NORMAL, const Microsecond d = 1000);
+        void update();
+
+    protected:
+        Microsecond _deadline;
+        Microsecond _time_created;
+    };
+
 
     // Multicore Algorithms
     class Variable_Queue
@@ -123,6 +151,17 @@ namespace Scheduling_Criteria
 
             static unsigned int current_head() { return Machine::cpu_id(); }
     };
+
+    // Global HRRN
+    class Global_HRRN: public HRRN {
+        public:
+            static const unsigned int HEADS = Traits<Build>::CPUS;
+
+        public:
+            Global_HRRN(int p = NORMAL): HRRN(p) {}
+
+            static unsigned int current_head() { return Machine::cpu_id(); }
+    };
 }
 
 
@@ -136,6 +175,10 @@ public Scheduling_Multilist<T> {};
 
 template<typename T>
 class Scheduling_Queue<T, Scheduling_Criteria::Global_RR>:
+public Multihead_Scheduling_List<T> {};
+
+template<typename T>
+class Scheduling_Queue<T, Scheduling_Criteria::Global_HRRN>:
 public Multihead_Scheduling_List<T> {};
 
 // Scheduler
