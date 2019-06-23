@@ -175,15 +175,6 @@ void REALVIEWPBXA9::pre_init() {
                 ORR     r0, r0, #0x01           // Set the FW bit (bit 0)                                                                           \t\n\
                 MCR     p15, 0, r0, c1, c0, 1   // Write Aux Ctrl register                                                                          \t\n\
                                                                                                                                                     \t\n\
-                //HOLDING                                                                                                                           \t\n\
-                //MOV     r2, #0x00                 // Clear r2                                                                                       \t\n\
-                //CPSIE   i                         // Enable interrupts                                                                              \t\n\
-            //holding_pen:                                                                                                                            \t\n\
-                //CMP     r2, #0x0                  // r2 will be set to 0x1 by IRQ handler on receiving SGI                                          \t\n\
-                //WFIEQ                                                                                                                               \t\n\
-                //BEQ     holding_pen                                                                                                                 \t\n\
-                //CPSID   i                         // IRQs not used in reset of example, so mask out interrupts                                      \t\n\
-                                                                                                                                                    \t\n\
             ");
 
         }

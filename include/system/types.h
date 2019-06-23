@@ -88,6 +88,7 @@ namespace Scheduling_Criteria
     class FCFS;
     class RR;
     class CPU_Affinity;
+    class Global_RR;
 };
 
 __END_UTIL
