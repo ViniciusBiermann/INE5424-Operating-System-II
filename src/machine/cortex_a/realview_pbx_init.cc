@@ -58,7 +58,7 @@ void REALVIEWPBXA9::pre_init() {
                 ORR     r1, r1, #0x03           // Bit 0: Enables secure interrupts, Bit 1: Enables Non-Secure interrupts \t\n\
                 STR     r1, [r0, #0x100]        // Write the Processor Interface Control register  (ICCICR/ICPICR)        \t\n\
                                                                                                                           \t\n\
-                // Load on registers following the GIC semminar                                                           \t\n\
+                // Load on registers following the GIC seminar                                                            \t\n\
                 LDR r0, =0x00010000 // All APs execute from 0x10000                                                       \t\n\
                 LDR r1, =0x10000030 // SYS flagset register                                                               \t\n\
                 STR r0, [r1]                                                                                              \t\n\
@@ -72,7 +72,7 @@ void REALVIEWPBXA9::pre_init() {
                 cmp     r1, r2                                                                                            \t\n\
                 blt     .L1                                                                                               \t\n\
                                                                                                                           \t\n\
-                // Load on registers following the GIC semminar                                                           \t\n\
+                // Load on registers following the GIC seminar                                                            \t\n\
                 LDR r0, =0x0   // intID = 0                                                                               \t\n\
                 LDR r1, =0x0F  // CPUs = 0xF                                                                              \t\n\
                 LDR r2, =0x01  // filter = 0x01                                                                           \t\n\
