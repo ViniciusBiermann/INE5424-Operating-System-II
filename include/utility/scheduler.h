@@ -78,7 +78,7 @@ namespace Scheduling_Criteria
         FCFS(Tn & ... an) {}
     };
 
-    // HRRN
+    // Highest Response Ratio Next
     class HRRN: public Priority {
 
         typedef RTC::Microsecond Microsecond;

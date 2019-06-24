@@ -15,7 +15,7 @@ namespace Scheduling_Criteria {
 
     HRRN::HRRN(int p, const Microsecond d ): Priority(p), _deadline(d), _time_created(Alarm::elapsed()) {}
     void HRRN::update() {
-    	RTC::Microsecond waitTime = Alarm::elapsed() - _time_created + 1;
+    	RTC::Microsecond waitTime = Alarm::elapsed() - _time_created;
     	(_priority == IDLE or _priority <= MAIN) ? _priority = _priority : 1 + waitTime/_deadline;
     }
     
