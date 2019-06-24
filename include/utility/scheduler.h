@@ -86,7 +86,7 @@ namespace Scheduling_Criteria
     public:
         enum {
             MAIN   = 0,
-            HIGH   = (unsigned(1) << (sizeof(int) * 8 - 1)) - 3,
+            HIGH   = (unsigned(1) << (sizeof(int) * 8 - 1)) - 4,
             NORMAL = (unsigned(1) << (sizeof(int) * 8 - 1)) - 3,
             LOW    = (unsigned(1) << (sizeof(int) * 8 - 1)) - 2,
             IDLE   = (unsigned(1) << (sizeof(int) * 8 - 1)) - 1
